@@ -1,17 +1,18 @@
 package org.formation.model;
 
-import java.time.Instant;
-import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.time.Instant;
+
 
 @Entity
 public class Trace {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	Status oldStatus,newStatus;

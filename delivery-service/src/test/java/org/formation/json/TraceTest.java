@@ -4,19 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Instant;
 
+import org.aspectj.lang.annotation.Before;
 import org.formation.model.Livraison;
 import org.formation.model.Status;
 import org.formation.model.Trace;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @JsonTest
 public class TraceTest {
 
@@ -29,7 +27,7 @@ public class TraceTest {
 	Livraison aLivraison;
 	
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		
 		aLivraison = new Livraison();

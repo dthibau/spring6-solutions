@@ -1,6 +1,3 @@
-spring:
-  profiles:
-    active: swagger
 
 management:
   endpoints:
@@ -21,7 +18,9 @@ management:
 
 ---
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile: prod
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_SERVICE}/${POSTGRES_DB}
