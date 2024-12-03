@@ -3,6 +3,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=10m
+
 
 management:
   endpoints:
@@ -17,14 +22,13 @@ management:
         - info
         - loggers
         - caches
+        - prometheus
   endpoint:
     health:
       show-details: always
   metrics:
     enable:
-      cache: true
-
-
+      caffeine: true
 ---
 spring:
   config:
