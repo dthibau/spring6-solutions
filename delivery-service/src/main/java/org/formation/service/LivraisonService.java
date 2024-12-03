@@ -6,6 +6,8 @@ import org.formation.model.Status;
 import org.formation.model.Trace;
 import org.formation.repository.LivraisonRepository;
 import org.formation.resource.LivraisonNotFoundException;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -31,6 +33,7 @@ public class LivraisonService {
         livraison.setStatus(Status.CREE);
         return livraisonRepository.save(livraison);
     }
+    @CachePut(value = "livraisons", key = "#livraisonId")
     public Livraison changeStatus(Long livraisonId, Status newStatus) {
         Livraison livraison = livraisonRepository.findById(livraisonId).orElseThrow(() -> new LivraisonNotFoundException("" + livraisonId));
 
@@ -47,6 +50,7 @@ public class LivraisonService {
     public List<Livraison> findAll() {
         return livraisonRepository.findAll();
     }
+    @Cacheable(value= "livraisons", key = "#id")
     public Livraison findById(Long id) {
         return livraisonRepository.findById(id).orElseThrow(() -> new LivraisonNotFoundException("" + id));
     }
