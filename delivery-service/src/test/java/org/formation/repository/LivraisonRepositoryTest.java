@@ -38,7 +38,7 @@ public class LivraisonRepositoryTest {
     public void setup() {
       
     	Livraison l = new Livraison();
-    	l.setNoCommande("1234");
+    	l.setNoCommande("1234-12345");
     	entityManager.persist(l);
       
         

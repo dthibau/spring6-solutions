@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
@@ -19,7 +20,8 @@ public class Livraison {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
+	@Pattern(regexp = "\\d{4}-\\d{5}")
 	private String noCommande;
 
 	@Column(name = "commande")
