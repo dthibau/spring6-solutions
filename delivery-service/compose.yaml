@@ -1,0 +1,31 @@
+services:
+  delivery-dev-postgresql:
+    image: postgres
+    volumes:
+      - delivery_dev_db:/var/lib/postgresql
+      - delivery_dev_data:/var/lib/postgresql/data
+    networks:
+      - back
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5434:5432
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "81:80"
+    depends_on:
+      - delivery-dev-postgresql
+    networks:
+      - back
+volumes:
+  delivery_dev_data:
+  delivery_dev_db:
+
+networks:
+  back:

@@ -25,6 +25,7 @@ services:
       - delivery_pgadmin:/var/lib/pgadmin
     depends_on:
       - delivery_postgresql
+
     networks:
       - back
 volumes:
