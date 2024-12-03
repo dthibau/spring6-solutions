@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.formation.model.Livraison;
@@ -39,7 +40,7 @@ public class LivraisonResource {
 	}
 	
 	@GetMapping("/livreur/{livreurId}")
-	public List<Livraison> byLivreur(@PathVariable("livreurId") long livreurId) {
+	public List<Livraison> byLivreur(@PathVariable("livreurId") UUID livreurId) {
 
 		logger.info("Livraison-resource byLivreur() invoked:" + livreurId);
 

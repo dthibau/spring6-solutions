@@ -1,6 +1,7 @@
 package org.formation.repository;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.formation.model.Livraison;
 import org.formation.model.Livreur;
@@ -56,7 +57,7 @@ public class LivraisonRepositoryTest {
     @Test
     public void testFindByLivreur() throws Exception {
         Livreur livreur = new Livreur();
-        livreur.setId(1l);
+        livreur.setId(UUID.randomUUID());
         assert repository.findByLivreur(livreur).isEmpty();
     }
     

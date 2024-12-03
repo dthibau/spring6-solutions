@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class LivraisonService {
@@ -50,7 +51,7 @@ public class LivraisonService {
         return livraisonRepository.findById(id).orElseThrow(() -> new LivraisonNotFoundException("" + id));
     }
 
-    public List<Livraison> findByLivreurId(Long livreurId) {
+    public List<Livraison> findByLivreurId(UUID livreurId) {
         Livreur livreur = new Livreur();
         livreur.setId(livreurId);
         return livraisonRepository.findByLivreur(livreur);

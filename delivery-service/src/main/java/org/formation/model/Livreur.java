@@ -1,22 +1,24 @@
 package org.formation.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.List;
+import java.util.UUID;
 
 @Entity
+@Data
 public class Livreur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@UuidGenerator(style = UuidGenerator.Style.TIME)
+	private UUID id;
 
-	public long getId() {
-		return id;
-	}
+	@ElementCollection
+	@CollectionTable(name = "livreur_reviews", joinColumns = @JoinColumn(name = "livreur_id"))
+	private List<Integer> integers;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+
 }

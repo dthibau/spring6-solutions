@@ -3,19 +3,28 @@ package org.formation.model;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.UUID;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 @Entity
+@Data
 public class Livraison {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String noCommande;
+
+	@Column(name = "commande")
+	@JdbcTypeCode(SqlTypes.JSON)
+	private Commande commande;
 	
 	@OneToOne
 	private Livreur livreur;
@@ -27,80 +36,23 @@ public class Livraison {
 	private List<Trace> historique = new ArrayList<>();
 
 	private Instant creationDate;
-	
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getNoCommande() {
-		return noCommande;
-	}
-
-	public void setNoCommande(String noCommande) {
-		this.noCommande = noCommande;
-	}
-
-	public Livreur getLivreur() {
-		return livreur;
-	}
-
-	public void setLivreur(Livreur livreur) {
-		this.livreur = livreur;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public List<Trace> getHistorique() {
-		return historique;
-	}
-
-	public void setHistorique(List<Trace> historique) {
-		this.historique = historique;
-	}
-	
 	public void addTrace(Trace trace) {
 		historique.add(trace);
 	}
 
-	public Instant getCreationDate() {
-		return creationDate;
-	}
 
-	public void setCreationDate(Instant creationDate) {
-		this.creationDate = creationDate;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Livraison livraison = (Livraison) o;
+		return id == livraison.id;
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+		return Long.hashCode(id);
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Livraison other = (Livraison) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-
 }
