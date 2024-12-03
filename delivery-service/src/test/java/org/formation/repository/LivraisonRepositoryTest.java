@@ -3,6 +3,7 @@ package org.formation.repository;
 import java.util.List;
 
 import org.formation.model.Livraison;
+import org.formation.model.Livreur;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,10 +37,21 @@ public class LivraisonRepositoryTest {
         
     }
     @Test
-    public void testFindByOwner() throws Exception {
+    public void testFindAll() throws Exception {
     	
     	List<Livraison> livraisons = repository.findAll();
     	assert !livraisons.isEmpty();
+    }
+    @Test
+    public void testFindById() throws Exception {
+
+        assert repository.findById(1l) != null;
+    }
+    @Test
+    public void testFindByLivreur() throws Exception {
+        Livreur livreur = new Livreur();
+        livreur.setId(1l);
+        assert repository.findByLivreur(livreur).isEmpty();
     }
     
     

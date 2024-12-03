@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import org.formation.model.Livraison;
 import org.formation.repository.LivraisonRepository;
+import org.formation.service.LivraisonService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +34,7 @@ public class LivraisonResourceTest {
 	private MockMvc mvc;
 
 	@MockBean
-	private LivraisonRepository livraisonRepository;
+	private LivraisonService livraisonService;
 
 	Livraison aLivraison;
 	
@@ -50,7 +51,7 @@ public class LivraisonResourceTest {
 
 	@Test
 	public void testGetLivraison() throws Exception {
-		given(this.livraisonRepository.findById(1l)).willReturn(Optional.of(aLivraison));
+		given(this.livraisonService.findById(1l)).willReturn(aLivraison);
 		ResultActions result = mvc.perform(get(API_PREFIX + "/1"));
 		MvcResult mvcResult = result.andReturn();
 		System.out.println(mvcResult.getResponse().getContentAsString());
