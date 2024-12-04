@@ -1,0 +1,15 @@
+hazelcast-client:
+  cluster-name: delivery  # Nom du cluster Hazelcast (doit correspondre au nom configuré côté serveur)
+  network:
+    cluster-members:
+      - localhost:5701  # Adresse et port des membres du cluster
+    connection-timeout: 5000  # Temps d'attente (ms) avant l'échec de la connexion
+  properties:
+    hazelcast.client.invocation.timeout.seconds: 10  # Timeout pour les invocations des opérations
+    hazelcast.client.statistics.enabled: true       # Activer les statistiques client
+  load-balancer:
+    type: round-robin  # Algorithme de répartition des connexions (par défaut : round-robin)
+  metrics:
+    enabled: true  # Activer la collecte des métriques client
+  labels:
+    - client1  # Labels pour identifier le client (utile pour des tags spécifiques)

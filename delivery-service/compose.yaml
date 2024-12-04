@@ -23,6 +23,14 @@ services:
       - delivery-dev-postgresql
     networks:
       - back
+  hazelcast:
+    image: hazelcast/hazelcast
+    environment:
+      HZ_NETWORK_PUBLICADDRESS : localhost:5701
+      HZ_CLUSTERNAME: delivery
+    ports:
+      - 5701:5701
+
 volumes:
   delivery_dev_data:
   delivery_dev_db:

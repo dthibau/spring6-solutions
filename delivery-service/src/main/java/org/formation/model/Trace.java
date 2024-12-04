@@ -7,13 +7,14 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.hibernate.annotations.Immutable;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 
 @Entity
 @Immutable
 @Data
-public class Trace {
+public class Trace implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

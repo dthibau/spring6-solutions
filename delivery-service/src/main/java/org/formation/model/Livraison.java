@@ -1,5 +1,6 @@
 package org.formation.model;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import org.hibernate.type.SqlTypes;
 
 @Entity
 @Data
-public class Livraison {
+public class Livraison implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
