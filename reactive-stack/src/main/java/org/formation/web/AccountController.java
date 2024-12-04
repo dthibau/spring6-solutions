@@ -6,6 +6,7 @@ import org.formation.model.Account;
 import org.formation.model.AccountRepository;
 import org.formation.service.AccountService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -41,6 +42,7 @@ public class AccountController {
         return accountRepository.deleteById(id);
     }
     @PutMapping
+    @PreAuthorize("authentication.principal.username == #account.owner")
     public Mono<Account> update(@RequestBody @Valid Account account) {
 
         return accountRepository.findById(account.getId()).switchIfEmpty(Mono.error(new NotFoundException())).then(accountRepository.save(account));
