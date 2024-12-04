@@ -5,8 +5,10 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 public record Commande(
         @Pattern(regexp = "\\d{4}-\\d{5}") String noCommande,
-        @Past String dateCommande,
+        @Past LocalDate dateCommande,
         @Min(1) Long customerId) {}
 

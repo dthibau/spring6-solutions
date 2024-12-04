@@ -20,8 +20,7 @@ public class Livreur {
 
 	@ElementCollection
 	@CollectionTable(name = "livreur_reviews", joinColumns = @JoinColumn(name = "livreur_id"))
-	@Min(1)  // Chaque entier doit être >= 1
-	@Max(5)  // Chaque entier doit être <= 5
+	@ValidListInteger
 	private List<Integer> integers;
 
 
