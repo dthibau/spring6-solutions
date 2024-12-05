@@ -1,19 +1,16 @@
 package org.formation.model;
 
-import java.io.Serializable;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
+
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -44,6 +41,61 @@ public class Livraison implements Serializable {
 		historique.add(trace);
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNoCommande() {
+		return noCommande;
+	}
+
+	public void setNoCommande(String noCommande) {
+		this.noCommande = noCommande;
+	}
+
+	public Commande getCommande() {
+		return commande;
+	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
+
+	public Livreur getLivreur() {
+		return livreur;
+	}
+
+	public void setLivreur(Livreur livreur) {
+		this.livreur = livreur;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public List<Trace> getHistorique() {
+		return historique;
+	}
+
+	public void setHistorique(List<Trace> historique) {
+		this.historique = historique;
+	}
+
+	public Instant getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Instant creationDate) {
+		this.creationDate = creationDate;
+	}
 
 	@Override
 	public boolean equals(Object o) {

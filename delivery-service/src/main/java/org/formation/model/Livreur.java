@@ -2,8 +2,6 @@ package org.formation.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
@@ -23,5 +21,19 @@ public class Livreur {
 	@ValidListInteger
 	private List<Integer> integers;
 
+	public UUID getId() {
+		return id;
+	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public List<Integer> getIntegers() {
+		return integers;
+	}
+
+	public void setIntegers(List<Integer> integers) {
+		this.integers = integers;
+	}
 }

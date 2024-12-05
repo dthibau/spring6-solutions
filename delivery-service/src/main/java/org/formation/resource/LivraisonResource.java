@@ -1,21 +1,15 @@
 package org.formation.resource;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.logging.Logger;
-
 import org.formation.model.Livraison;
 import org.formation.model.Status;
-import org.formation.model.Trace;
-import org.formation.repository.LivraisonRepository;
 import org.formation.service.LivraisonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/livraison")

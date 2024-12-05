@@ -1,0 +1,52 @@
+services:
+  delivery-service:
+    image: delivery-service:0.0.9-SNAPSHOT
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://delivery-dev-postgresql:5432/delivery
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - 8080:8080
+    networks:
+      - back
+
+  delivery-dev-postgresql:
+    image: postgres
+    volumes:
+      - delivery_dev_db:/var/lib/postgresql
+      - delivery_dev_data:/var/lib/postgresql/data
+    networks:
+      - back
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=delivery
+    ports:
+      - 5434:5432
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "81:80"
+    depends_on:
+      - delivery-dev-postgresql
+    networks:
+      - back
+  hazelcast:
+    image: hazelcast/hazelcast
+    environment:
+      HZ_NETWORK_PUBLICADDRESS : localhost:5701
+      HZ_CLUSTERNAME: delivery
+    ports:
+      - 5701:5701
+
+volumes:
+  delivery_dev_data:
+  delivery_dev_db:
+
+networks:
+  back:

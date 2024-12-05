@@ -8,7 +8,6 @@ import org.formation.repository.LivraisonRepository;
 import org.formation.resource.LivraisonNotFoundException;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -35,7 +34,6 @@ public class LivraisonService {
         return livraisonRepository.save(livraison);
     }
     @CachePut(value = "livraisons", key = "#livraisonId")
-    @PreAuthorize("hasRole('SUPER_ADMIN')")
     public Livraison changeStatus(Long livraisonId, Status newStatus) {
         Livraison livraison = livraisonRepository.findById(livraisonId).orElseThrow(() -> new LivraisonNotFoundException("" + livraisonId));
 

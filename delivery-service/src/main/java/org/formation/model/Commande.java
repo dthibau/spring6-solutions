@@ -3,7 +3,6 @@ package org.formation.model;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
 
 import java.time.LocalDate;
 
